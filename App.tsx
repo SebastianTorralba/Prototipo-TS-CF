@@ -8,8 +8,10 @@ import FamiliesScreen from './screens/FamiliesScreen';
 import VisitsScreen from './screens/VisitsScreen';
 import TeamScreen from './screens/TeamScreen';
 import ReportsScreen from './screens/ReportsScreen';
+import SplashScreen from './screens/SplashScreen';
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const [activeScreen, setActiveScreen] = useState<Screen>('dashboard');
 
   const renderScreen = () => {
@@ -30,6 +32,10 @@ export default function App() {
         return <DashboardScreen />;
     }
   };
+
+  if (showSplash) {
+    return <SplashScreen onFinish={() => setShowSplash(false)} />;
+  }
 
   return (
     <div className="flex flex-col h-screen font-sans">

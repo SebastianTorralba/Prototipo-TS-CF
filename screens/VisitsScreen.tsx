@@ -145,4 +145,37 @@ const VisitsScreen: React.FC = () => {
                         >
                             {date.getDate()}
                             {isCurrentMonth && hasVisit && (
-                                <span className={`absolute bottom-1.
+                                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${isSelected ? 'bg-white' : 'bg-indigo-500'}`}></span>
+                            )}
+                        </button>
+                    );
+                })}
+            </div>
+            
+            {selectedDate && (
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                        {selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </h4>
+                    {visitsForSelectedDay.length > 0 ? (
+                        <div className="space-y-2">
+                            {visitsForSelectedDay.map((visit, i) => (
+                                <div key={i} className="p-2 bg-indigo-50 rounded-lg border border-indigo-100">
+                                    <p className="font-medium text-indigo-900 text-sm">{visit.family}</p>
+                                    <p className="text-xs text-indigo-700 mt-1">{visit.details}</p>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-sm text-gray-500 italic">No hay visitas programadas para este día.</p>
+                    )}
+                </div>
+            )}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default VisitsScreen;
